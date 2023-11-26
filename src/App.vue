@@ -9,12 +9,11 @@
 </template>
 
 <script>
-import {defineComponent} from "vue";
 import TheHeader from "@/components/header/TheHeader.vue";
 
-export default defineComponent({
+export default {
   components: {TheHeader}
-})
+}
 </script>
 
 <style scoped>
