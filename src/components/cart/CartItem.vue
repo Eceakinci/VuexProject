@@ -16,7 +16,10 @@
         </div>
       </div>
       <div class="item__total">Total: ${{ itemTotal }}</div>
-      <button @click="removeFromCart({ prodId, itemTotal })">Remove</button>
+      <div class="item__actions">
+        <button @click="removeFromCart({ prodId, itemTotal })">Remove All</button>
+        <button @click="removeOneItem({ prodId })">Remove One</button>
+      </div>
     </div>
   </li>
 </template>
@@ -32,7 +35,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions([ 'removeFromCart' ])
+    ...mapActions([ 'removeFromCart', 'removeOneItem'])
   }
 };
 </script>
@@ -45,6 +48,7 @@ li {
   text-align: center;
   max-width: 25rem;
   list-style: none;
+  border-radius: 1rem;
 }
 
 img {
@@ -52,6 +56,10 @@ img {
   height: 5rem;
   border-radius: 50%;
   object-fit: cover;
+}
+
+h3 {
+  margin-bottom: 1rem;
 }
 
 .item__data {
@@ -68,6 +76,11 @@ img {
   width: auto;
 }
 
+.item__actions {
+  display:flex;
+  justify-content: space-evenly;
+}
+
 button {
   font: inherit;
   border: 1px solid #8f0030;
@@ -76,11 +89,13 @@ button {
   border-radius: 30px;
   cursor: pointer;
   padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease-out;
 }
 
 button:hover,
 button:active {
   background-color: #53001c;
   border-color: #53001c;
+  transition: all 0.3s ease-out;
 }
 </style>

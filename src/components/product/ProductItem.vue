@@ -78,6 +78,7 @@ button {
   border: 1px solid #45006d;
   padding: 0.5rem 1.5rem;
   border-radius: 30px;
+  transition: all 0.3s ease-out;
 }
 
 /* TODO: ANIMATION ON HOVER */
@@ -86,5 +87,6 @@ button:hover,
 button:active {
   background-color: #760ab4;
   border-color: #760ab4;
+  transition: all 0.3s ease-out;
 }
 </style>

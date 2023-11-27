@@ -30,5 +30,6 @@ li {
   text-align: center;
   max-width: 25rem;
   list-style: none;
+  border-radius: 1rem;
 }
 </style>

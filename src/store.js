@@ -31,8 +31,8 @@ const products = {
                 price: 6.99,
             },
         ],
-        cartElements: [],
-        cartTotal: { quantity: 0, totalPrice: 0}
+            cartElements: [],
+            cartTotal: { quantity: 0, totalPrice: 0}
         }
     },
     mutations: {
@@ -58,6 +58,17 @@ const products = {
             state.cartElements.splice(productIndex, 1)
             state.cartTotal.quantity--;
             state.cartTotal.totalPrice -= value.itemTotal
+        },
+        removeOneItem(state, value) {
+            const productIndex = state.cartElements.findIndex(item => item.id === value.prodId);
+
+            if(state.cartElements[productIndex].quantity === 1) {
+                this.commit('removeFromCart', value)
+            } else {
+                state.cartElements[productIndex].quantity--;
+                state.cartTotal.quantity--;
+                state.cartTotal.totalPrice -= state.cartElements[productIndex].price
+            }
         }
     },
     actions: {
@@ -66,6 +77,9 @@ const products = {
         },
         removeFromCart(context, payload) {
             context.commit('removeFromCart', payload)
+        },
+        removeOneItem(context, payload) {
+            context.commit('removeOneItem', payload)
         }
     }
 }

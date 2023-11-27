@@ -9,7 +9,12 @@
           <router-link to="/products">Products</router-link>
         </li>
         <li>
-          <router-link to="/cart">Cart</router-link>
+          <router-link to="/cart">
+            Cart (
+            <Transition name="fade" mode="out-in">
+              <span :key="quantity">{{ quantity }}</span></Transition>
+            )
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -21,6 +26,11 @@
 
 <script>
 export default {
+  computed: {
+    quantity() {
+      return this.$store.state.product.cartTotal.quantity;
+    }
+  }
 };
 </script>
 
@@ -46,7 +56,7 @@ li {
   margin: 0 1rem;
 }
 
-a {
+a, span {
   text-decoration: none;
   color: #333;
   font-weight: bold;
@@ -69,10 +79,20 @@ button {
   background-color: transparent;
   color: #45006d;
   border-radius: 30px;
+  transition: all 0.3s ease-out;
 }
 
 button:hover,
 button:active {
   background-color: #f0d5ff;
+  transition: all 0.3s ease-out;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
